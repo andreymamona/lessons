@@ -1,7 +1,7 @@
-deposit = 2130
-term = 5
-percent = 10
-bonus = 120
+deposit = 2130  # размер вклада
+term = 5  # срок
+percent = 10  # проценты
+bonus = 120  # ежегодный бонус
 
 result = deposit
 year = 1

@@ -27,7 +27,7 @@ print(inv_str)
 
 # N3.
 
-deposit= 2130
+deposit = 2130
 term = 5
 percent = 10
 bonus = 120
