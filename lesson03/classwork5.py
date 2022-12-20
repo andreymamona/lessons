@@ -1,14 +1,14 @@
-
+import math
 my_list = [1, 1.0, 2, 2, 5.0, "python", "python3", "python3"]
-
-my_set = set(my_list)
-
-print(len(my_list) - len(my_set))
-
-print(my_list[2:5][::-1])
-
-a = 4
-
-sqr_list = [a*4, a*a, (2*a*a)**0.5]
-
+print("список:", my_list)
+my_set = set(my_list)  # преобразуем список в
+print("набор, созданный из списка:", my_set)
+print("кол-во не уникальных эл-тов списка", len(my_list) - len(my_set))
+print("эл-ты списка со 2 по 4 в обратном порядке", my_list[2:5][::-1])
+print("---------------------------------------------------------------")
+print("Введите сторону квадрата")
+a = input()  # сторона квадрата
+a = float(a)
+sqr_list = [a*4, a*a, math.sqrt(2)*a]  # периметр, площадь и диагональ квадрата со стороной a
+print("периметр, площадь и диагональ квадрата со стороной a")
 print(sqr_list)
