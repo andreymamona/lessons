@@ -7,7 +7,7 @@ result = deposit
 year = 1
 
 while year <= term:
-    result = result * 1.1 + 120
+    result = result + result * 0.1 + 120
     year += 1
 
 print("Вклад", deposit, "руб. под", percent, "процентов с ежегодным бонусом", bonus, "руб. через", term, "лет будет равен", result)
