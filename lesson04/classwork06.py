@@ -7,9 +7,7 @@ x = int(0)  # quantity of simple numbers
 list_of_simple = list()
 
 for i in range(n1, m1+1):
-    if i == 1:if n1 == 1:
-    test = int(1)
-else:
+    if i == 1:
         test = int(1)
     else:
         test = int(0)
