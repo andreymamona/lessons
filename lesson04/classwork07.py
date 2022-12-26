@@ -11,7 +11,7 @@ third_list = list()
 
 while True:
     num = input("Input number: ")
-    if num.isdigit() == True:
+    if num.isdigit():
         if list_number == 0:
             first_list.append(num)
         elif list_number == 1:
@@ -40,7 +40,7 @@ for item1 in first_list:
                     break
                 else:
                     check = True
-            if check == True:
+            if check:
                 result_list.append(item1)
             break
 
