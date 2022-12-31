@@ -8,10 +8,13 @@ my_map = {
     "Summer": [6, 7, 8],
     "Fall": [9, 10, 11]
 }
+
+
 def month_to_season(month_number):
     for season, month in my_map.items():
         if month_number in month:
             return season
 
 
-print(month_to_season(7))
+month_n = int(input("Input month number:"))
+print(month_to_season(month_n))
