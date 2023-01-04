@@ -7,7 +7,7 @@ import requests
 
 def download_file(my_url, file_name):
     temp = requests.get(my_url)
-    my_file = open(file_name, 'w')
+    my_file = open(file_name, 'wb')
     print(temp.text, '\n', 'Downloaded from:', temp.url, file=my_file)
     my_file.close()
 

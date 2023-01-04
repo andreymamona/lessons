@@ -9,6 +9,16 @@ def equal_length(phrase, key):
         key += key
     return key
 
+# более правильное решение
+# def get_key_symbol(key, index):
+#     """
+#     Если длина нашего ключа меньше начальной строки
+#     мы получаем следующий символ с самого начала в цикле
+#     """
+#     if index > len(key) - 1:
+#         return key[index % len(key)]
+#     return key[index]
+
 
 def xor_cipher(phrase, key):
     long_key = equal_length(phrase, key)

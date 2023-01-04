@@ -31,3 +31,14 @@ def list_of_coworkers(x):
 number_of_coworkers = int(input('Введите количество сотрудников: '))
 coworkers = list_of_coworkers(number_of_coworkers)
 secret_santa(*coworkers)
+
+# Правильное решение
+# people = ["Alex", "Olga", "Roma", "Dima", "Kiril"]
+# random.shuffle(people)
+#
+# for index in range(len(people)):
+#     # Special case when we match the last person in list to the first
+#     if index == len(people) - 1:
+#         print(f"{people[index]} - {people[0]}")
+#     else:
+#         print(f"{people[index]} - {people[index + 1]}")
