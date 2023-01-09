@@ -11,7 +11,6 @@ with open("dictionary.csv", "r") as file:
     }
 
 
-
 def eng_to_rus(word):
     return dictionary.get(word, "ERROR")
 
