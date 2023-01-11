@@ -14,7 +14,7 @@ def country_search(city_name):
                 city_info['region'] = row[2]
                 city_info['country'] = row[1]
                 # print(city_info)
-                break
+                # break
             if row[0] == "END":
                 print('Город не найден')
     with open("cities/region.csv", "r") as file:
