@@ -1,4 +1,4 @@
-class Cat:
+class Animal:
     height = None
     weight = None
     name = None
@@ -12,9 +12,6 @@ class Cat:
 
     def run(self):
         print(f'{self.name} is running')
-
-    def meow(self):
-        print(f'{self.name} is meowing')
 
     def jump(self):
         print(f'{self.name} is jumping')
