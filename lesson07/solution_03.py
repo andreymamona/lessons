@@ -11,12 +11,24 @@ import csv
 
 
 def buyers_list():
-    #    city_info = {'name': city_name, 'region': None, 'country': None}
     with open("store/store.csv", "r") as file:
         reader = csv.reader(file)
+        buyers = {}
         for row in reader:
-            print(
-                f'Покупатель: {row[0]}| Товары: {row[1]}| Кол-во: {row[2]}|Цена: {row[3]}| Общая стоимость: {int(row[3]) * int(row[2])}')
+            if row[1] in buyers.keys():
+                 goods[row[1]][0] += int(row[2]) #+ int(goods[row[1]][0])
+            else:
+                goods[row[1]] = [0, 0, 0]
+                goods[row[1]][0] = int(row[2])
+                goods[row[1]][1] = int(row[3])
+    for key, value in goods.items():
+        goods[key][2] = int(goods[key][0]) * int(goods[key][1])
+        print(f'Товар: {key}| Кол-во: {goods[key][0]}| Цена: {goods[key][1]}| Стоимость: {goods[key][2]}')
+    # with open("store/store.csv", "r") as file:
+    #     reader = csv.reader(file)
+    #     for row in reader:
+    #         print(
+    #             f'Покупатель: {row[0]}| Товары: {row[1]}| Кол-во: {row[2]}|Цена: {row[3]}| Общая стоимость: {int(row[3]) * int(row[2])}')
 
 
 def goods_list():
