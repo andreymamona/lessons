@@ -15,15 +15,15 @@ def buyers_list():
         reader = csv.reader(file)
         buyers = {}
         for row in reader:
-            if row[1] in buyers.keys():
-                 goods[row[1]][0] += int(row[2]) #+ int(goods[row[1]][0])
+            if row[0] in buyers.keys():
+                 buyers[row[0]][0] += int(row[2])  # summary quantity
+                 buyers[row[0]][1] += int(row[2])*int(row[3])  # sum.cost
             else:
-                goods[row[1]] = [0, 0, 0]
-                goods[row[1]][0] = int(row[2])
-                goods[row[1]][1] = int(row[3])
-    for key, value in goods.items():
-        goods[key][2] = int(goods[key][0]) * int(goods[key][1])
-        print(f'Товар: {key}| Кол-во: {goods[key][0]}| Цена: {goods[key][1]}| Стоимость: {goods[key][2]}')
+                buyers[row[0]] = [0, 0]
+                buyers[row[0]][0] = int(row[2])
+                buyers[row[0]][1] = int(row[2])*int(row[3])
+    for key, value in buyers.items():
+        print(f'Покупатель: {key}| Кол-во товаров: {buyers[key][0]}| Стоимость: {buyers[key][1]}')
     # with open("store/store.csv", "r") as file:
     #     reader = csv.reader(file)
     #     for row in reader:
