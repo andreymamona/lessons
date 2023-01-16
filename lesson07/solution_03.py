@@ -24,11 +24,6 @@ def buyers_list():
                 buyers[row[0]][1] = int(row[2])*int(row[3])
     for key, value in buyers.items():
         print(f'Покупатель: {key}| Кол-во товаров: {buyers[key][0]}| Стоимость: {buyers[key][1]}')
-    # with open("store/store.csv", "r") as file:
-    #     reader = csv.reader(file)
-    #     for row in reader:
-    #         print(
-    #             f'Покупатель: {row[0]}| Товары: {row[1]}| Кол-во: {row[2]}|Цена: {row[3]}| Общая стоимость: {int(row[3]) * int(row[2])}')
 
 
 def goods_list():
