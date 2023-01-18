@@ -40,20 +40,20 @@ class MyTime:
         return self.timestamp <= other.timestamp
 
     def __repr__(self):
-        print(f'My time: {self.timestamp}')
+        print(f'My time: {self.conv(self.timestamp)}')
 
     def __str__(self):
         return f'My time: {self.conv(self.timestamp)}'
 
     def __add__(self, other):
         timestamp = self.timestamp + other.timestamp
-        return MyTime(*self.conv(timestamp))
+        return self.__class__(*self.conv(timestamp))
 
     def __mul__(self, num):  # multiply
-        return MyTime(*self.conv(self.timestamp * num))  # как заменить на имя текущего класса?
+        return self.__class__(*self.conv(self.timestamp * num))  # как заменить на имя текущего класса?
 
     def __sub__(self, other):
-        return MyTime(*self.conv(self.timestamp - other.timestamp))
+        return self.__class__(*self.conv(self.timestamp - other.timestamp))
 
 
 class MyDateTime(MyTime):
@@ -77,15 +77,21 @@ class MyDateTime(MyTime):
         second = timestamp % 60
         return year, month, day, hours, minutes, second
 
-    def __add__(self, other):
-        timestamp = self.timestamp + other.timestamp
-        return MyDateTime(*self.conv(timestamp))
+    def __repr__(self):
+        print(f'My date-time: {self.conv(self.timestamp)}')
 
-    def __mul__(self, num):  # multiply
-        return MyDateTime(*self.conv(self.timestamp * num))  # как заменить на имя текущего класса?
+    def __str__(self):
+        return f'My date-time: {self.conv(self.timestamp)}'
 
-    def __sub__(self, other):
-        return MyDateTime(*self.conv(self.timestamp - other.timestamp))
+    # def __add__(self, other):
+    #     timestamp = self.timestamp + other.timestamp
+    #     return MyDateTime(*self.conv(timestamp))
+
+    # def __mul__(self, num):  # multiply
+    #     return MyDateTime(*self.conv(self.timestamp * num))  # как заменить на имя текущего класса?
+
+    # def __sub__(self, other):
+    #     return MyDateTime(*self.conv(self.timestamp - other.timestamp))
 
 
 if __name__ == '__main__':
@@ -99,6 +105,9 @@ if __name__ == '__main__':
     # time4 = MyTime(1, 2, 3)
     # print(time1 - time4 + MyTime(7, 45, 0))
     date1 = MyDateTime(11, 101, 11, 101, 11, 5)
-    date2 = MyDateTime(12, 101, 11, 101, 11, 5)
+    date2 = MyDateTime(3, 101, 11, 101, 11, 5)
     print(date1)
+    print(date2)
+    print(date1 + date2)
     print(date1*2)
+
