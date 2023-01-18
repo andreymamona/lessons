@@ -34,6 +34,12 @@ class Figure:
         dl = math.sqrt((a1.x - a2.x) ** 2 + (a1.y - a2.y) ** 2)
         return dl
 
+    def find_perimetr(self):
+        raise NotImplemented
+
+    def find_ploshcha(self):
+        raise NotImplemented
+
 
 class Circle(Figure):
     center = None
