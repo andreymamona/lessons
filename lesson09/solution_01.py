@@ -28,7 +28,7 @@ class Figure:
     ploshcha = None
 
     def __str__(self):
-        return f'{self.__class__.__name__} Perimetr: {self.perimetr},Ploshcha: {self.ploshcha}'
+        return f'{self.__class__.__name__} Perimetr: {self.perimetr:.3f},Ploshcha: {self.ploshcha:.3f}'
 
     def dlina(self, a1=None, a2=None):
         dl = math.sqrt((a1.x - a2.x) ** 2 + (a1.y - a2.y) ** 2)
