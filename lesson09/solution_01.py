@@ -83,7 +83,6 @@ class Square(Figure):
 
     def find_ploshcha(self):
         self.ploshcha = self.dlina(self.a1, self.a2) ** 2
-        print(self.ploshcha)
 
 
 if __name__ == '__main__':
@@ -91,7 +90,7 @@ if __name__ == '__main__':
     a2 = Point('x', 'y')
     a3 = Point('x', 'y')
     print(a1, a2, a3)
-    cir = Circle(a1, 7)
+    cir = Circle(a1, random.randint(1, 50))
     triang = Triangle(a1, a2, a3)
     sqr = Square(a2, a3)
     print(cir)
