@@ -39,8 +39,9 @@ class Circle(Figure):
     center = None
     radius = None
 
-    def __init__(self, center, radius):
-        self.center, self.radius = center, radius
+    def __init__(self, a1, a2):
+        self.center = a1
+        self.radius = self.dlina(a1, a2)
         self.find_perimetr()
         self.find_ploshcha()
 
@@ -90,7 +91,7 @@ if __name__ == '__main__':
     a2 = Point('x', 'y')
     a3 = Point('x', 'y')
     print(a1, a2, a3)
-    cir = Circle(a1, random.randint(1, 50))
+    cir = Circle(a1, a2)
     triang = Triangle(a1, a2, a3)
     sqr = Square(a2, a3)
     print(cir)
