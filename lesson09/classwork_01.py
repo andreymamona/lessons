@@ -83,16 +83,6 @@ class MyDateTime(MyTime):
     def __str__(self):
         return f'My date-time: {self.conv(self.timestamp)}'
 
-    # def __add__(self, other):
-    #     timestamp = self.timestamp + other.timestamp
-    #     return MyDateTime(*self.conv(timestamp))
-
-    # def __mul__(self, num):  # multiply
-    #     return MyDateTime(*self.conv(self.timestamp * num))  # как заменить на имя текущего класса?
-
-    # def __sub__(self, other):
-    #     return MyDateTime(*self.conv(self.timestamp - other.timestamp))
-
 
 if __name__ == '__main__':
     # time1 = MyTime(12, 12, 12)
@@ -110,4 +100,3 @@ if __name__ == '__main__':
     print(date2)
     print(date1 + date2)
     print(date1*2)
-
