@@ -1,6 +1,5 @@
 # Создать генератор и/или итератор простой геометрической прогрессии.
 
-import re
 import logging
 
 logging.basicConfig(level=logging.INFO)
