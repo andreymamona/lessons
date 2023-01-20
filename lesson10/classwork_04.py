@@ -1,4 +1,4 @@
-# Пользователь вводит два числа N и M, рассчитать последовательность  N + NN + NNN + ... + N**M.
+# Пользователь вводит два числа N и M, рассчитать последовательность  N + NN + NNN + ... + NM.
 import logging
 
 logging.basicConfig(level=logging.INFO)
@@ -10,6 +10,7 @@ class MyIter:
     m = None
     step = 1
     summ = 0
+    tmp = str()
 
     def __init__(self, n, m):
         self.n, self.m = n, m
@@ -23,10 +24,10 @@ class MyIter:
                 self.step += 1
                 return f'Sum: {self.summ}'
             else:
-                tmp = self.n ** self.step
-                self.summ += tmp
+                self.tmp += str(self.n)
+                self.summ += int(self.tmp)
                 self.step += 1
-                return f'N**{self.step-1} = {tmp}'
+                return f'N**{self.step-1} = {self.tmp}'
         else:
             raise StopIteration
 
