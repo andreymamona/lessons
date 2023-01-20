@@ -33,7 +33,7 @@ class MyIter:
 
 
 if __name__ == '__main__':
-    my_array = MyIter(2, 10)
+    my_array = MyIter(10, 32)
     while True:
         try:
             logger.info(f'num {next(my_array)}')
