@@ -22,12 +22,12 @@ class MyIter:
         if self.step <= self.m + 1:
             if self.step == self.m + 1:
                 self.step += 1
-                return f'Sum: {self.summ}'
+                return f'Sum = {self.summ}'
             else:
                 self.tmp += str(self.n)
                 self.summ += int(self.tmp)
                 self.step += 1
-                return f'N**{self.step-1} = {self.tmp}'
+                return f'N{self.step-1} = {self.tmp}'
         else:
             raise StopIteration
 
