@@ -11,20 +11,21 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-def move(n, x=1, y=2, ch=''):
+def hanoi(n, x=1, y=2, ch=''):
     global st
     if n == 1:
         st += 1
         logger.info(f'{ch}Шаг {st}, диск {n} со стержня {x} на стержень {y}')
     else:
-        move(n - 1, x, 6 - x - y, ch+'-')
+        tmp = 6 - x - y
+        hanoi(n - 1, x, tmp, ch+'-')
         st += 1
         logger.info(f'{ch}Шаг {st}, диск {n} со стержня {x} на стержень {y},')
-        move(n - 1, 6 - x - y, y, ch+'-')
+        hanoi(n - 1, tmp, y, ch+'-')
 
 
 if __name__ == '__main__':
     st = 0
     disc_number = int(input('Количество дисков: '))
-    move(disc_number)
+    hanoi(disc_number)
 
