@@ -8,37 +8,25 @@ import random
 
 
 def secret_santa(*args):
-    tmplst = list(args)
-    for i in range(len(args)//2):
-        a = tmplst[0]
-        tmplst.pop(0)
-        rnd_int = random.randint(0, len(tmplst) - 1)
-        b = tmplst[rnd_int]
-        tmplst.pop(rnd_int)
-        print(a, b)
-    if len(tmplst) > 0:
-        print("Без пары:", tmplst[0])
+    people = list(args)
+    random.shuffle(people)
+    for index in range(len(people)):
+    # Special case when we match the last person in list to the first
+        if index == len(people) - 1:
+            print(f"{people[index]} - {people[0]}")
+        else:
+            print(f"{people[index]} - {people[index + 1]}")
 
 
-def list_of_coworkers(x):
-    my_list = []
-    for i in range(x):
-        my_list.append(input('Введите имя: '))
-    return my_list
+# def list_of_coworkers(x):
+#     my_list = []
+#     for i in range(x):
+#         my_list.append(input('Введите имя: '))
+#     return my_list
 
 
-# coworkers = ['df', 'fds', 'ere', 'sdfsd', 'rwe', 'ffeet']
-number_of_coworkers = int(input('Введите количество сотрудников: '))
-coworkers = list_of_coworkers(number_of_coworkers)
+coworkers = ['df', 'fds', 'ere', 'sdfsd', 'rwe', 'ffeet']
+# number_of_coworkers = int(input('Введите количество сотрудников: '))
+# coworkers = list_of_coworkers(number_of_coworkers)
 secret_santa(*coworkers)
 
-# Правильное решение
-# people = ["Alex", "Olga", "Roma", "Dima", "Kiril"]
-# random.shuffle(people)
-#
-# for index in range(len(people)):
-#     # Special case when we match the last person in list to the first
-#     if index == len(people) - 1:
-#         print(f"{people[index]} - {people[0]}")
-#     else:
-#         print(f"{people[index]} - {people[index + 1]}")
