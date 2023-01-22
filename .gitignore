@@ -10,3 +10,4 @@ __pycache__/
 *.py[cod]
 *$py.class
 /lesson05/print.txt
+*.log
