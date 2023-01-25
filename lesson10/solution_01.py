@@ -21,7 +21,7 @@ def hanoi(n, x=1, y=2, ch=''):
         hanoi(n - 1, x, tmp, ch+'-')
         st += 1
         logger.info(f'{ch}Шаг {st}, диск {n} со стержня {x} на стержень {y},')
-        hanoi(n - 1, tmp, y, ch+'-')
+        hanoi(n - 1, tmp, y, ch+'+')
 
 
 if __name__ == '__main__':
