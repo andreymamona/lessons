@@ -33,6 +33,44 @@ def users_add(firstname: str, lastname: str, email: str, password: str, age: int
             logger.info(f"The error '{e}' occurred")
 
 
+def select_by_email(email: str):
+    with sqlite3.connect("my_db.sqlite3") as session:
+        cursor = session.cursor()
+        try:
+            cursor.execute(
+                """
+                SELECT *
+                FROM user
+                WHERE email = ?;
+                """,
+                (email,)
+            )
+            session.commit()
+            logger.info("Query executed successfully")
+            return cursor.fetchall()
+        except Error as e:
+            logger.info(f"The error '{e}' occurred")
+
+
+def select_by_age(min_a: int, max_a: int):
+    with sqlite3.connect("my_db.sqlite3") as session:
+        cursor = session.cursor()
+        try:
+            cursor.execute(
+                """
+                SELECT *
+                FROM user
+                WHERE age BETWEEN ? AND ?;
+                """,
+                (min_a, max_a,)
+            )
+            session.commit()
+            logger.info("Query executed successfully")
+            return cursor.fetchall()
+        except Error as e:
+            logger.info(f"The error '{e}' occurred")
+
+
 if __name__ == "__main__":
     users = [["Andrey", "Mamona", "andrey.jbjv@gmail.com", "TestPass", 34],
              ["Nikita", "Mamona", "andrey.jbjv+1@gmail.com", "TestPass", 34],
@@ -40,4 +78,11 @@ if __name__ == "__main__":
              ["Leo", "Mamona", "andrey.jbjv+3@gmail.com", "TestPass", 7],
              ["Anna", "Mamona", "andrey.jbjv+4@gmail.com", "TestPass", 32]]
 
-    users_add(*users[i] for i in range(len(users)))
+    # users_add(*users[i] for i in range(len(users)))
+    # users_add("Andrey", "Makarevich", "andrey.jbjv@gmail.com", "TestPass", 34)
+
+    # my_email = 'andrey.jbjv@gmail.com'
+    # logger.info(select_by_email(my_email))
+
+    min_age, max_age = 30, 40
+    logger.info(select_by_age(min_age, max_age))
