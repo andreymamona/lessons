@@ -41,7 +41,7 @@ def select_by_email(email: str):
                 """
                 SELECT *
                 FROM user
-                WHERE email = ?;
+                WHERE email LIKE ?;
                 """,
                 (email,)
             )
@@ -81,8 +81,8 @@ if __name__ == "__main__":
     # users_add(*users[i] for i in range(len(users)))
     # users_add("Andrey", "Makarevich", "andrey.jbjv@gmail.com", "TestPass", 34)
 
-    # my_email = 'andrey.jbjv@gmail.com'
-    # logger.info(select_by_email(my_email))
+    my_email = 'andrey.jbjv__@gmail.com'
+    logger.info(select_by_email(my_email))
 
-    min_age, max_age = 30, 40
-    logger.info(select_by_age(min_age, max_age))
+    # min_age, max_age = 30, 40
+    # logger.info(select_by_age(min_age, max_age))
