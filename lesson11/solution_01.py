@@ -75,7 +75,96 @@ def show_all_products():
                 FROM products
                 ;
                 """,
+            )
+            session.commit()
+            logger.info("Query executed successfully")
+            all_items = cursor.fetchall()
+            for row in range(len(all_items)):
+                logger.info(all_items[row])
+        except Error as e:
+            logger.info(f"The error '{e}' occurred")
 
+
+def product_edit():
+    with sqlite3.connect("my_db.sqlite3") as session:
+        product_id = input('Input product ID:')
+        cursor = session.cursor()
+        if product_id == 'exit':
+            return
+        choice = input('Choose what to change (1:name, 2:cost, 3:quantity, 4:comment or "exit":')
+        if choice == 'exit':
+            return
+        elif choice == '1':
+            value = input('Input product_name:')  # product_name
+            cursor.execute(
+                """
+                UPDATE products SET product_name = ?
+                WHERE id = ?;
+                """,
+                (value, product_id),
+            )
+            session.commit()
+        elif choice == '2':
+            while True:
+                try:
+                    value = float(input('Input cost:')) # cost
+                except:
+                    logger.info("Try again")
+                else:
+                    cursor.execute(
+                        """
+                        UPDATE products SET cost = ?
+                        WHERE id = ?;
+                        """,
+                        (value, product_id),
+                    )
+                    session.commit()
+                    break
+        elif choice == '3':
+            while True:
+                try:
+                    value = int(input('Input quantity:')) # quantity
+                except:
+                    logger.info("Try again")
+                else:
+                    cursor.execute(
+                        """
+                        UPDATE products SET quantity = ?
+                        WHERE id = ?;
+                        """,
+                        (value, product_id),
+                    )
+                    session.commit()
+                    break
+        elif choice == '4':
+            value = input('Input comment:') # comment
+            cursor.execute(
+                """
+                UPDATE products SET comment = ?
+                WHERE id = ?;
+                
+                """,
+                (value, product_id),
+            )
+            session.commit()
+        else:
+            print('Wrong value!')
+            return
+
+
+def product_remove():
+    with sqlite3.connect("my_db.sqlite3") as session:
+        product_id = input('Input product ID for deletion:')
+        cursor = session.cursor()
+        try:
+            cursor.execute(
+                """
+                DELETE
+                FROM products
+                WHERE id = ?
+                ;
+                """,
+                (product_id)
             )
             session.commit()
             logger.info("Query executed successfully")
@@ -87,9 +176,24 @@ def show_all_products():
 
 
 if __name__ == "__main__":
-    ...
-    # create_table()
-    # product_add()
-    # show_all_products()
+    while True:
+        choice = input('Choose action (1:create table, 2:add product, 3:remove product, 4:edit product, 5:show all)')
+        if choice == 1:
+            create_table()
+        if choice == 2:
+            product_add()
+        if choice == 3:
+            product_remove()
+        if choice == 4:
+            product_edit()
+        if choice == 5:
+            show_all_products()
+
+
+
+
+
+
+
 
 
