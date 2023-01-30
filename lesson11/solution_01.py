@@ -178,16 +178,20 @@ def product_remove():
 if __name__ == "__main__":
     while True:
         choice = input('Choose action (1:create table, 2:add product, 3:remove product, 4:edit product, 5:show all)')
-        if choice == 1:
+        if choice == '1':
             create_table()
-        if choice == 2:
+        elif choice == '2':
             product_add()
-        if choice == 3:
+        elif choice == '3':
             product_remove()
-        if choice == 4:
+        elif choice == '4':
             product_edit()
-        if choice == 5:
+        elif choice == '5':
             show_all_products()
+        elif choice == 'stop':
+            break
+        else:
+            print('Wrong input!!!')
 
 
 
