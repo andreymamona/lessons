@@ -88,6 +88,7 @@ def show_all_products():
 def product_edit():
     with sqlite3.connect("my_db.sqlite3") as session:
         product_id = input('Input product ID:')
+        dif = None
         cursor = session.cursor()
         if product_id == 'exit':
             return
@@ -96,60 +97,40 @@ def product_edit():
             return
         elif choice == '1':
             value = input('Input product_name:')  # product_name
-            cursor.execute(
-                """
-                UPDATE products SET product_name = ?
-                WHERE id = ?;
-                """,
-                (value, product_id),
-            )
+            dif = 'product_name'
             session.commit()
         elif choice == '2':
             while True:
                 try:
-                    value = float(input('Input cost:')) # cost
+                    value = float(input('Input cost:'))  # cost
                 except:
                     logger.info("Try again")
                 else:
-                    cursor.execute(
-                        """
-                        UPDATE products SET cost = ?
-                        WHERE id = ?;
-                        """,
-                        (value, product_id),
-                    )
+                    dif = 'cost'
                     session.commit()
                     break
         elif choice == '3':
             while True:
                 try:
-                    value = int(input('Input quantity:')) # quantity
+                    value = int(input('Input quantity:'))  # quantity
                 except:
                     logger.info("Try again")
                 else:
-                    cursor.execute(
-                        """
-                        UPDATE products SET quantity = ?
-                        WHERE id = ?;
-                        """,
-                        (value, product_id),
-                    )
-                    session.commit()
+                    dif = 'quantity'
                     break
         elif choice == '4':
-            value = input('Input comment:') # comment
-            cursor.execute(
-                """
-                UPDATE products SET comment = ?
-                WHERE id = ?;
-                
-                """,
-                (value, product_id),
-            )
-            session.commit()
+            value = input('Input comment:')  # comment
+            dif = 'comment'
         else:
             print('Wrong value!')
             return
+        cursor.execute(f"""
+            UPDATE products SET {dif} = {value}
+            WHERE id = {product_id};
+            """
+        )
+        session.commit()
+
 
 
 def product_remove():
@@ -192,12 +173,6 @@ if __name__ == "__main__":
             break
         else:
             print('Wrong input!!!')
-
-
-
-
-
-
 
 
 
