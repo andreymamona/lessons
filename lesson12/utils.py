@@ -6,6 +6,7 @@ from sqlalchemy_utils import create_database, database_exists
 def setup_db_engine():
     DB_PATH = Path(__file__).resolve().parent / "my_database.sqlite3"
     DB_ECHO = True
+
     engine = create_engine(f"sqlite:////{DB_PATH}", echo=DB_ECHO)
     return engine
 
