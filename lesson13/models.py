@@ -34,28 +34,28 @@ class Address(Base):
     __tablename__ = "address"
     id = Column(Integer, primary_key=True)
     city = Column(String)
-    address = Column(Integer)
+    address = Column(String)
 
     user_id = Column(Integer, ForeignKey("user.id"))
     user = relationship("User", back_populates="addresses", uselist=False)
 
-    class Purchase(Base):
-        __tablename__ = "purchase"
-        id = Column(Integer, primary_key=True)
-        user_id = Column(ForeignKey("user.id"), primary_key=True)
-        product_id = Column(ForeignKey("product.id"), primary_key=True)
-        count = Column(Integer)
+class Purchase(Base):
+    __tablename__ = "purchase"
+    id = Column(Integer, primary_key=True)
+    user_id = Column(ForeignKey("user.id"), primary_key=True)
+    product_id = Column(ForeignKey("product.id"), primary_key=True)
+    count = Column(Integer)
 
-        user = relationship("User", back_populates="purchases", uselist=False)
-        product = relationship("Product", back_populates="purchases", uselist=False)
+    user = relationship("User", back_populates="purchases", uselist=False)
+    product = relationship("Product", back_populates="purchases", uselist=False)
 
-    class Product(Base):
-        __tablename__ = "product"
-        id = Column(Integer, primary_key=True)
-        name = Column(String)
-        price = Column(Float)
+class Product(Base):
+    __tablename__ = "product"
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    price = Column(Float)
 
-        purchases = relationship("Purchase", back_populates="product")
+    purchases = relationship("Purchase", back_populates="product")
 
 
 if __name__ == "__main__":
