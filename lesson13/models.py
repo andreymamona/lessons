@@ -13,11 +13,8 @@ class User(Base):
     password = Column(String)
 
     profile = relationship("Profile", back_populates="user", uselist=False)
-    addresses = relationship("Address", back_populates="user")
+    address = relationship("Address", back_populates="user")
     purchases = relationship("Purchase", back_populates="user")
-
-    def __str__(self):
-        return f'User #{self.email}'
 
 
 class Profile(Base):
@@ -37,7 +34,7 @@ class Address(Base):
     address = Column(String)
 
     user_id = Column(Integer, ForeignKey("user.id"))
-    user = relationship("User", back_populates="addresses", uselist=False)
+    user = relationship("User", back_populates="address", uselist=False)
 
 class Purchase(Base):
     __tablename__ = "purchase"
