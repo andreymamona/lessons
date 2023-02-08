@@ -1,5 +1,10 @@
+import logging
+
+from services import *
 from utils import *
 
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 if __name__ == '__main__':
     engine = setup_db_engine()
@@ -8,29 +13,29 @@ if __name__ == '__main__':
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    while True:
-        choice = input(f'* 1-add user, 2-edit data, 3-delete user, 4-random, 5-show all,'
-                       f' 0-stop program'
-                       f'\n* Choose your action: ')
-        if choice == '0':
-            break
-        elif choice == '1':
-            add_user(session)
-        elif choice == '2':
-            edit_user(session)
-        elif choice == '3':
-            delete_user(session)
-        elif choice == '4':
-            num = int(input('Input quantity of new random users: '))
-            random_addition(session, num)
-        elif choice == '5':
-            list_of_users = show_all_users(session)
-            try:
-                while True:
-                    next(list_of_users)
-            except:
-                print('End of list')
-        else:
-            print('Wrong choice!!! Try again!')
-            pass
+    admin = {'admin': 'admin', 'root': 'pass'}
 
+    while True:
+        logger.info('Enter login(email) and password separated by a space; 0 for exit')
+        first_inp = input()
+        if first_inp == '0':
+            break
+        try:
+            log_email, pswd = first_inp.split(' ')
+        except Exception:
+            logger.info('Invalid input')
+            continue
+        log_email.lower()
+        if log_email in admin.keys():
+            if admin[log_email] == pswd:
+                logger.info('You are Admin')
+                admin_menu(session)
+                continue
+        current_user = find_user_by_email(session, log_email, pswd)
+        if current_user is None:
+            logger.info('Incorrect login or/and password')
+            continue
+        user_menu(session)
+        continue
+
+# regexp for command.col_name=val : 1: r"^[a-z]*"gm 2:r"[a-z].[a-z]+="gm 3:"=[a-z.@_ 0-9]*"

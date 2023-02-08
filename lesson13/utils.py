@@ -24,9 +24,6 @@ def create_database_if_not_exists(engine):
         create_database(engine.url)
 
 
-def find_user_by_email():
-    ...
-
 
 def add_user(session):
     new_email = input('Input email for new user:')
@@ -37,10 +34,11 @@ def add_user(session):
     new_city = input('Input city for new user:')
     new_addr = input('Input address for new user:')
     address = Address(user_id=user.id, city=new_city, address=new_addr)
+    session.add(address)
     new_phone = input('Input phone number for new user:')
     new_age = input('Input age for new user:')
     profile = Profile(user_id=user.id, phone=new_phone, age=new_age)
-    session.add(profile, address)
+    session.add(profile)
 
     session.commit()
 
@@ -69,7 +67,6 @@ def edit_user(session):
     session.commit()
 
 
-
 def delete_user(session):
     num = int(input('Input user ID for deletion:'))
     address = session.query(Address).filter(Address.user_id == num).first()
@@ -82,8 +79,14 @@ def delete_user(session):
     session.commit()
 
 
-def show_user():
-    ...
+def find_user_by_email(session, log_email, pswd):
+    current_user = session.query(User).filter(User.email == log_email).first()
+    if current_user is None:
+        return None
+    if current_user.password == pswd:
+        return current_user
+    else:
+        return None
 
 
 def show_all_users(session):
@@ -91,15 +94,15 @@ def show_all_users(session):
     for user in list_of_users:
         address = session.query(Address).filter(Address.user_id == user.id).first()
         profile = session.query(Profile).filter(Profile.user_id == user.id).first()
-        yield print(f'{user.id} {user.email} Address: {address.city} {address.address} Age:{profile.age}'
+        yield (f'{user.id} {user.email} Address: {address.city} {address.address} Age:{profile.age}'
                     f' tel:{profile.phone}')
 
 
 def random_addition(session, num):
     reader = pd.read_csv("sample.csv", header=None)
     for i in range(num):
-        new_email = f'{reader[0][random.randint(0, 199)]}.{reader[1][random.randint(0, 199)]}' \
-                    f'@{reader[2][random.randint(0, 199)]}'
+        new_email = f'{(reader[0][random.randint(0, 199)]).lower()}.{(reader[1][random.randint(0, 199)]).lower()}' \
+                    f'@{(reader[2][random.randint(0, 199)]).lower()}'
         new_pass = reader[3][random.randint(0, 199)]
         user = User(email=new_email, password=new_pass)
         session.add(user)
@@ -113,3 +116,20 @@ def random_addition(session, num):
         profile = Profile(user_id=user.id, phone=new_phone, age=new_age)
         session.add(profile)
         session.commit()
+
+
+def add_new_product(session):
+    new_prod = input('Input name for new product:')
+    new_price = input('Input price for new product:')
+    product = Product(name=new_prod, price=new_price)
+    session.add(product)
+    session.commit()
+
+
+def add_new_purchase(session):
+    new_u = input('Input user ID for new purchase:')
+    new_p = input('Input product ID for new purchase:')
+    new_c = input('Input quantity:')
+    purchase = Purchase(user_id=new_u, product_id=new_p, count=new_c)
+    session.add(purchase)
+    session.commit()
