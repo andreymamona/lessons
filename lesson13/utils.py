@@ -1,7 +1,7 @@
 from pathlib import Path
 from sqlalchemy import create_engine, update, select
 from sqlalchemy_utils import create_database, database_exists
-from sqlalchemy.orm import sessionmaker
+
 from models import *
 import random
 import pandas as pd
@@ -22,7 +22,6 @@ def setup_db_engine():
 def create_database_if_not_exists(engine):
     if not database_exists(engine.url):
         create_database(engine.url)
-
 
 
 def add_user(session):
@@ -92,10 +91,13 @@ def find_user_by_email(session, log_email, pswd):
 def show_all_users(session):
     list_of_users = session.query(User).order_by(User.id).all()
     for user in list_of_users:
+        # tmp = user.email.lower()
+        # session.execute(update(User).where(User.id == user.id).values(email=tmp))
         address = session.query(Address).filter(Address.user_id == user.id).first()
         profile = session.query(Profile).filter(Profile.user_id == user.id).first()
+        # session.commit()
         yield (f'{user.id} {user.email} Address: {address.city} {address.address} Age:{profile.age}'
-                    f' tel:{profile.phone}')
+               f' tel:{profile.phone}')
 
 
 def random_addition(session, num):

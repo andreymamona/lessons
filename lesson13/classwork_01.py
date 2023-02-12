@@ -1,5 +1,5 @@
 import logging
-
+from sqlalchemy.orm import sessionmaker
 from services import *
 from utils import *
 
@@ -14,8 +14,9 @@ if __name__ == '__main__':
     session = Session()
 
     admin = {'admin': 'admin', 'root': 'pass'}
-
+# Добавить возможность новой регистрации пользователя с начального экрана
     while True:
+
         logger.info('Enter login(email) and password separated by a space; 0 for exit')
         first_inp = input()
         if first_inp == '0':
@@ -39,3 +40,14 @@ if __name__ == '__main__':
         continue
 
 # regexp for command.col_name=val : 1: r"^[a-z]*"gm 2:r"[a-z].[a-z]+="gm 3:"=[a-z.@_ 0-9]*"
+#            list_us_prod = session.query(Purchase).filter(Purchase.product_id == '2').all()
+#         us_dict = {}
+#         for it in list_us_prod:
+#             it_name = it.product.name
+#             if it.user.email in us_dict.keys():
+#                 us_dict[it.user.email] += 1
+#             else:
+#                 us_dict[it.user.email] = 1
+#         logger.info(it_name)
+#         logger.info(us_dict)
+
