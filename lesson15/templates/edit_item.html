@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit item</title>
+</head>
+<body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit item</title>
+</head>
+<body>
+<h1>Edit  item</h1>
+<form action="#" method="post">
+    <li> <b>id:</b>{{item.id}} <b>name:</b> {{item.name}} <b>price:</b> {{item.price}} </li>
+    <br> <br>
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" class="form-control" name="name" value="{{item.name}}">
+        <label for="price">Price:</label>
+        <input type="text" class="form-control" name="price" value="{{item.price}}">
+        <br> <br>
+
+        <br> <br>
+        <button type="submit"> Сохранить изменения </button>
+    </div>
+</form>
+    <br>
+    <a href="{{ url_for('show_items') }}">
+        <button> Отмена </button>
+    </a>
+</body>
+</html>
+</body>
+</html>

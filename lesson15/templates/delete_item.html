@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Удаление пользователя</title>
+    <title>Удаление товара</title>
 </head>
 <body>
-<h2>Вы уверены, что хотите удалить {{user.email}}?</h2>
+<h2>Вы уверены, что хотите удалить {{item.name}}?</h2>
 <form action="#" method='post'>
   <button type="submit">Удалить</button>
 </form>
 <br> <br>
-<a href="{{url_for('show_users')}}">
+<a href="{{url_for('show_items')}}">
   Отменить
 </body>
 </html>

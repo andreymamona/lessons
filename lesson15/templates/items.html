@@ -2,9 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Товары</title>
 </head>
 <body>
-
+<h1>Список товаров</h1>
+ <a href="{{url_for('add_item')}}">
+   <button> Добавить товар </button>
+ </a>
+ <ol>
+   {% for item in items %}
+     <li> <b>id:</b>{{item.id}} <b>Название:</b> <a href="{{url_for('edit_item', item_id=item.id)}}">{{item.name}}</a>
+     <b>Цена:</b>{{item.price}}
+     </li>
+        <a href="{{url_for('delete_item', item_id = item.id)}}" style="margin-left: 10px;">
+        Удалить
+        </a>
+    <br> <br>
+   {% endfor %}
+ </ol>
 </body>
 </html>
