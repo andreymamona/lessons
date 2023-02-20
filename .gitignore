@@ -12,3 +12,6 @@ __pycache__/
 /lesson05/print.txt
 *.log
 /codewars/
+/lesson07/cities/city.csv
+/lesson11/db.sqlite3
+/lesson07/cities/country.csv
