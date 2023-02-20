@@ -16,6 +16,10 @@ class User(Base):
     address = relationship("Address", back_populates="user")
     purchases = relationship("Purchase", back_populates="user")
 
+    def as_dict(self):
+        return {'user_id': self.id, 'email': self.email, 'password': self.password,
+                'phone': self.profile.user.profile.phone, 'age': self.profile.user.profile.age}
+
 
 class Profile(Base):
     __tablename__ = "profile"

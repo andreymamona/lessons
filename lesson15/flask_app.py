@@ -1,5 +1,4 @@
 import logging
-from flask_sqlalchemy import SQLAlchemy
 from flask import Flask, render_template, request, redirect, url_for
 from sqlalchemy.orm import sessionmaker
 from sql_utils import *
@@ -26,6 +25,22 @@ session = Session()
 #     for key, value in request.args.to_dict().items():
 #         logger.info(f'{key} = {value}')
 #     return request.args.to_dict()
+
+
+@app.route("/test", methods=["GET", "POST"])
+def index():
+    if request.method == 'POST':
+        new_us = User(email=request.form['email'], password=request.form['password'])
+        session.add(new_us)
+        session.commit()
+        prof = Profile(phone=request.form['phone'], age=request.form['age'], user_id=new_us.id)
+        session.add(prof)
+        addr = Address(city=request.form['city'], address=request.form['address'], user_id=new_us.id)
+        session.add(addr)
+        session.commit()
+    else:
+        users = session.query(User).all()
+        return [u.as_dict() for u in users]
 
 
 @app.route('/')
